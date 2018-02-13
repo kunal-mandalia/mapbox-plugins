@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Map from './Map.js'
+import Map from './Map/MapContainer.js'
 
 class App extends Component {
   render() {

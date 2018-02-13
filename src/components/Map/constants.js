@@ -1,0 +1,2 @@
+export const VIEWPORT_CHANGE = 'MAP/VIEWPORT_CHANGED'
+export const MAP_CLICK = 'MAP/CLICK'
