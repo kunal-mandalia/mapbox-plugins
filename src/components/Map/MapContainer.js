@@ -3,6 +3,12 @@ import ReactMapGL from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { viewportChange, mapClick } from './actions'
 import Sidebar from '../Sidebar/Sidebar'
+import Minimap from '../Minimap/Minimap'
+import styled from 'react-emotion'
+
+const MapControlsWrapper = styled('div')`
+
+`
 
 class MapContainer extends Component {
   constructor (props) {
@@ -24,7 +30,7 @@ class MapContainer extends Component {
 
   dispatchLocalAction (action) {
     this.setState(prevState => ({
-      actions: prevState.actions.concat(action)
+      actions: prevState.actions.concat({ts: Date.now(), ...action})
     }))
   }
 
@@ -53,18 +59,27 @@ class MapContainer extends Component {
 
   render() {
     return (
+      <div>
+        <MapControlsWrapper>
+          <Sidebar
+            mapActions={this.state.actions}
+            emitMapAction={this.dispatchLocalAction}
+          />
+          <Minimap
+            mapActions={this.state.actions}
+            emitMapAction={this.dispatchLocalAction}
+          />
+        </MapControlsWrapper>
       <ReactMapGL
+        id='react-map-gl'
         {...this.state.viewport}
         showZoomControls={true}
         mapboxApiAccessToken={process.env.REACT_APP_API_KEY_MAPBOX}
         onViewportChange={this._onViewportChange}
         onClick={this._onClick}
       >
-        <Sidebar
-          mapActions={this.state.actions}
-          emitMapAction={this.dispatchLocalAction}
-        />
       </ReactMapGL>
+      </div>
     )
   }
 }
