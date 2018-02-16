@@ -5,6 +5,7 @@ import { viewportChange, mapClick } from './actions'
 import Sidebar from '../Sidebar/Sidebar'
 import Minimap from '../Minimap/Minimap'
 import styled from 'react-emotion'
+import VesselLayer from '../Layer/Vessel'
 
 const MapControlsWrapper = styled('div')`
 
@@ -78,6 +79,7 @@ class MapContainer extends Component {
         onViewportChange={this._onViewportChange}
         onClick={this._onClick}
       >
+        <VesselLayer />
       </ReactMapGL>
       </div>
     )
