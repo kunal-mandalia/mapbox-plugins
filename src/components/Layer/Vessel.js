@@ -6,6 +6,16 @@ const SVGWrapper = styled('g')`
   pointer-events: all;
 `
 
+const SVGPathWrapper = styled('path')`
+  fill: rgba(0,0,0,0);
+  stroke: skyblue;
+  fill: solid;
+  stroke-width: 10px;
+  &:hover {
+    stroke: #1FBAD6;
+  }
+`
+
 export class VesselLayer extends Component {
   constructor (props) {
     super(props)
@@ -23,9 +33,9 @@ export class VesselLayer extends Component {
 
   redraw = (opt) => {
     return <g style={{ pointerEvents: 'all' }} onClick={this.onClick}>
-        <path
+        <SVGPathWrapper
           d='M 100 100 L 500 0 Z'
-          style={{ fill: 'rgba(0,0,0,0)', stroke: '#1FBAD6', fill: 'solid', strokeWidth: '10px' }}
+          // style={{ fill: 'rgba(0,0,0,0)', stroke: '#1FBAD6', fill: 'solid', strokeWidth: '10px' }}
         />
       </g>
   }
